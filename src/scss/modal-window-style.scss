@@ -1,0 +1,180 @@
+@import "./style.scss";
+
+$borderColor: #356EAD;
+$errorColor: #DB4F4F;
+
+#close-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    width: 40%;
+    height: fit-content;
+    max-height: 90%;
+    margin: auto auto;
+    flex-flow: column;
+    padding: 3%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2);
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 99;
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__title {
+        @include font-style(Gilroy, 20px, 600, 30px, $veryDarkBlue, 0.04em);
+        text-transform: uppercase;
+        margin-bottom: 48px;
+    }
+
+    &__input-label {
+        @include font-style(Gilroy, 16px, normal, 30px, $veryDarkBlue, 0.04em);
+        margin-bottom: 8px;
+    }
+
+    &__input {
+        @include font-style(Gilroy, 16px, normal, 30px, $veryDarkBlue, 0.04em);
+        padding: 0 10%;
+        min-height: 60px;
+        border: 1px solid $borderColor;
+        border-radius: 10px;
+        margin-bottom: 32px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    textarea {
+        padding-top: 3%;
+        min-height: 144px;
+        resize: none;
+        margin-bottom: 12px;
+    }
+
+    &__button {
+        min-height: 60px;
+        border-radius: 10px;
+        border: none;
+        background-color: $blue;
+        transition: background-color 0.2s;
+        cursor: pointer;
+        text-transform: uppercase;
+        @include font-style(Gilroy, 16px, normal, 26px, white, 0.04em);
+
+        &:hover {
+            background-color: $hoverColor;
+            transition: background-color 0.2s;
+        }
+    }
+
+    .error {
+        @include font-style(Gilroy, 16px, normal, 26px, $errorColor, 0.04em);
+        opacity: 0;
+        margin-bottom: 20px;
+    }
+
+    .success {
+        width: 60%;
+        align-self: center;
+        padding: 3% 5%;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: opacity 1s;
+        @include font-style(Gilroy, 14px, normal, 24px, white, 0.04em);
+        background-color: rgba(49, 96, 153, 0.8);
+        opacity: 0;
+    }
+}
+
+::-webkit-input-placeholder {
+    opacity: 20%;
+}
+
+input:-moz-placeholder {
+    opacity: 20%;
+}
+
+@media screen and (max-width: 1199px) {
+    .modal {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .modal {
+        &__input {
+            min-height: 50px;
+        }
+
+        &__button {
+            min-height: 50px;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .modal {
+        &__input {
+            min-height: 45px;
+        }
+
+        &__button {
+            min-height: 45px;
+        }
+    }
+}
+@media screen and (max-width: 675px) {
+    .modal {
+        width: 80%;
+        padding: 5%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .modal {
+        #close-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        &__title {
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        &__input-label, &__input {
+            font-size: 16px;
+            line-height: 26px;
+        }
+    }
+}
